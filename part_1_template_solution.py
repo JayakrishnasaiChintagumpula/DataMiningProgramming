@@ -68,9 +68,8 @@ class Section1:
 
     def partA(self):
         # Return 0 (ran ok) or -1 (did not run ok)
-        print("Part 1-A:")
         answer = u.starter_code()
-        print(" 0 means ran ok and -1 means did not run ok: " + str(answer))
+        print("Part 1(A) - 0 means ran ok and -1 means did not run ok: " + str(answer))
         return answer
 
     # ----------------------------------------------------------------------
@@ -96,26 +95,25 @@ class Section1:
 
         ytrain_test = nu.scale_data_1(ytrain)
         ytest_test = nu.scale_data_1(ytest)
+        print("1(B) - Are elements in Xtrain a floating point number and scaled between 0 to 1: " + str(Xtrain_test))
+        print("1(B) - Are elements in a floating point number and scaled between 0 to 1: " + str(Xtest_test))
+        print("1(B) - Are elements in ytrian an integer: " + str(ytrain_test))
+        print("1(B) - Are elements in ytest an integer: " + str(ytest_test))
+        
 
-        print("\n Part 1-B:")
-        print("The elements in Xtrain a floating point number and scaled between 0 to 1: " + str(Xtrain_test))
-        print("The elements in a floating point number and scaled between 0 to 1: " + str(Xtest_test))
-        print("The elements in ytrian an integer: " + str(ytrain_test))
-        print("The elements in ytest an integer: " + str(ytest_test))
         answer = {}
 
         # Enter your code and fill the `answer` dictionary
+
         length_Xtrain = len(Xtrain)
         length_Xtest = len(Xtest)
         length_ytrain = len(ytrain)
         length_ytest = len(ytest)
         max_Xtrain = Xtrain.max()
         max_Xtest = Xtest.max()
-
-        print(f"Length of Xtrain, Xtest, ytrain, ytest is: {length_Xtrain}, {length_Xtest}, {length_ytrain}, {length_ytest}")
-        print(f" Max value of Xtrain and Xtest is: {max_Xtrain}, {max_Xtest}")
-
-        answer["length_Xtrain"] = 12214  # Number of samples
+        print(f"1(B) - Length of Xtrain, Xtest, ytrain, ytest: {length_Xtrain}, {length_Xtest}, {length_ytrain}, {length_ytest}")
+        print(f"1(B) - Max value of Xtrain and Xtest: {max_Xtrain}, {max_Xtest}")
+        answer["length_Xtrain"] = 12214  
         answer["length_Xtest"] = 2037
         answer["length_ytrain"] = 12214
         answer["length_ytest"] = 2037
@@ -137,23 +135,17 @@ class Section1:
         X: NDArray[np.floating],
         y: NDArray[np.int32],
     ):
-        # Enter your code and fill the `answer` dictionary
-        print("\n Part 1-C:")
+        print("Part 1(C)- \n")
         X, y, Xtest, ytest = u.prepare_data()
         Xtrain, ytrain = u.filter_out_7_9s(X, y)
         Xtest, ytest = u.filter_out_7_9s(Xtest, ytest)
-
         # Enter your code and fill the `answer` dictionary
-        scores1 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,
-                                                    clf=DecisionTreeClassifier(random_state=42),
-                                                    cv=KFold(n_splits=5, shuffle=True, random_state=42))
+        scores1 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,clf=DecisionTreeClassifier(random_state=42),cv=KFold(n_splits=5, shuffle=True, random_state=42))
         scores_1 = u.print_cv_result_dict(scores1)
-        print(scores_1) 
-        
+        print(scores_1)
         answer = {}
         answer["clf"] = DecisionTreeClassifier(random_state=42)  # the estimator (classifier instance)
         answer["cv"] = KFold(n_splits=5, shuffle=True, random_state=42)  # the cross validator instance
-        
         # the dictionary with the scores  (a dictionary with
         # keys: 'mean_fit_time', 'std_fit_time', 'mean_accuracy', 'std_accuracy'.
         answer["scores"] = {'mean_fit_time': 1.8887569904327393, 'std_fit_time': 0.09137786119178684,
@@ -172,18 +164,15 @@ class Section1:
         y: NDArray[np.int32],
     ):
         # Enter your code and fill the `answer` dictionary
-        print("\n Part 1-D:")
-
+        print("Part 1(D)- \n")
         X, y, Xtest, ytest = u.prepare_data()
         Xtrain, ytrain = u.filter_out_7_9s(X, y)
         Xtest, ytest = u.filter_out_7_9s(Xtest, ytest)
-
         scores2 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,
                                                     clf=DecisionTreeClassifier(random_state=42),
                                                     cv=ShuffleSplit(n_splits=5, random_state=42))
         scores_2 = u.print_cv_result_dict(scores2)
         print(scores_2)
-
         # Answer: same structure as partC, except for the key 'explain_kfold_vs_shuffle_split'
 
         answer = {}
@@ -191,7 +180,7 @@ class Section1:
         answer["cv"] = ShuffleSplit(n_splits=5, random_state=42)
         answer["scores"] = {'mean_fit_time': 2.3391366004943848, 'std_fit_time': 0.11636608310150157,
                             'mean_accuracy': 0.9749590834697217, 'std_accuracy': 0.002567002805459594}
-        answer["explain_kfold_vs_shuffle_split"] = 'Flip-Split divides the data into train and test sets and shuffles them randomly. However, shuffle split may have more volatility than k-fold. By averaging over several training and testing rounds on various data subsets, 𝑘-fold cross-validation yields a more accurate assessment of model performance. Computationally expensive 𝑘-fold cross-validation can occur, particularly when 𝑘 is large.'
+        answer["explain_kfold_vs_shuffle_split"] = 'shuffle-split divides the data into train and test sets by randomly shuffling it. However, in comparison to k-fold, shuffle split may have more volatility. By averaging over several cycles of training and testing on various subsets of the data, 𝑘-fold cross-validation offers a more accurate assessment of model performance. Computing a high number of 𝑘 can make 𝑘-fold cross-validation computationally costly'
         return answer
 
     # ----------------------------------------------------------------------
@@ -209,43 +198,39 @@ class Section1:
         # Answer: built on the structure of partC
         # `answer` is a dictionary with keys set to each split, in this case: 2, 5, 8, 16
         # Therefore, `answer[k]` is a dictionary with keys: 'scores', 'cv', 'clf`
-
-        print("\n Part 1-E:")
+        print("Part 1(E)- \n")
         X, y, Xtest, ytest = u.prepare_data()
         Xtrain, ytrain = u.filter_out_7_9s(X, y)
         Xtest, ytest = u.filter_out_7_9s(Xtest, ytest)
-        print("For K=2:")
+        print("For K=2 - \n")
         scoresk2 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,
                                                      clf=DecisionTreeClassifier(random_state=42),
                                                      cv=ShuffleSplit(n_splits=2, random_state=42))
         scores_k2 = nu.print_cv_result_dict_test(scoresk2)
         print(scores_k2)
         answer = {}
-
-        print("For K=5:")
+        print("For K = 5 - \n")
         scoresk5 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,
                                                      clf=DecisionTreeClassifier(random_state=42),
                                                      cv=ShuffleSplit(n_splits=5, random_state=42))
         scores_k5 = nu.print_cv_result_dict_test(scoresk5)
         print(scores_k5)
-
-        print("For K=8:")
+        print("For K = 8 - \n")
         scoresk8 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,
                                                      clf=DecisionTreeClassifier(random_state=42),
                                                      cv=ShuffleSplit(n_splits=8, random_state=42))
         scores_k8 = nu.print_cv_result_dict_test(scoresk8)
         print(scores_k8)
-        print("For K=16:")
+        print("For K = 16 - \n")
         scoresk16 = u.train_simple_classifier_with_cv(Xtrain=Xtrain, ytrain=ytrain,
                                                       clf=DecisionTreeClassifier(random_state=42),
                                                       cv=ShuffleSplit(n_splits=16, random_state=42))
         scores_k16 = nu.print_cv_result_dict_test(scoresk16)
         print(scores_k16)
-
         answer = {}
         answer["2"] = {'scores': {'mean_accuracy': 0.9770867430441899, 'std_accuracy': 0.0016366612111292644},
                        'cv': ShuffleSplit(n_splits=2, random_state=42), 'clf': DecisionTreeClassifier(random_state=42)}
-        answer["5"] = {'scores': {'mean_accuracy': 0.9749590834697217, 'std_accuracy': 0.002567002805459594},
+        answer["2"] = {'scores': {'mean_accuracy': 0.9749590834697217, 'std_accuracy': 0.002567002805459594},
                        'cv': ShuffleSplit(n_splits=5, random_state=42), 'clf': DecisionTreeClassifier(random_state=42)}
         answer["8"] = {'scores': {'mean_accuracy': 0.9750409165302782, 'std_accuracy': 0.0025552364968896833},
                        'cv': ShuffleSplit(n_splits=8, random_state=42), 'clf': DecisionTreeClassifier(random_state=42)}
@@ -254,8 +239,9 @@ class Section1:
                         'clf': DecisionTreeClassifier(random_state=42)}
 
         # Enter your code, construct the `answer` dictionary, and return it.
-
+        # Noticing Difference: The mean tends to be the same while the standard deviation does tend to deviate.
         return answer
+
 
     # ----------------------------------------------------------------------
     """
@@ -282,7 +268,8 @@ class Section1:
         answer = {}
 
         # Enter your code, construct the `answer` dictionary, and return it.
-        print("\n Part 1-F:")
+
+        print("Part 1(F)- \n")
         X, y, Xtest, ytest = u.prepare_data()
         Xtrain, ytrain = u.filter_out_7_9s(X, y)
         Xtest, ytest = u.filter_out_7_9s(Xtest, ytest)
@@ -368,7 +355,7 @@ class Section1:
          5) max_features 
          5) n_estimators
         """
-        print("\n Part 1-G:")
+        print("Part 1(G)- \n")
         X, y, Xtest, ytest = u.prepare_data()
         Xtrain, ytrain = u.filter_out_7_9s(X, y)
         Xtest, ytest = u.filter_out_7_9s(Xtest, ytest)
@@ -435,7 +422,7 @@ class Section1:
         print("Accuracy for base parameters for testing: ", base_accuracy_y)
 
         answer = {}
-
+        
         # Enter your code, construct the `answer` dictionary, and return it.
         answer["clf"] = RandomForestClassifier(random_state=42)
         answer["default_parameters"] = {"min_samples_leaf": 1, "max_depth": None, "min_samples_split": 2}
@@ -451,7 +438,6 @@ class Section1:
         answer["accuracy_best_full_training"] = 0.9968069428524644
         answer["accuracy_orig_full_testing"] = 0.1649746192893401
         answer["accuracy_best_full_testing"] = 0.16464712624856723
-
         """
            `answer`` is a dictionary with the following keys: 
             
