@@ -180,7 +180,7 @@ class Section1:
         answer["cv"] = ShuffleSplit(n_splits=5, random_state=42)
         answer["scores"] = {'mean_fit_time': 2.3391366004943848, 'std_fit_time': 0.11636608310150157,
                             'mean_accuracy': 0.9749590834697217, 'std_accuracy': 0.002567002805459594}
-        answer["explain_kfold_vs_shuffle_split"] = 'shuffle-split divides the data into train and test sets by randomly shuffling it. However, in comparison to k-fold, shuffle split may have more volatility. By averaging over several cycles of training and testing on various subsets of the data, 𝑘-fold cross-validation offers a more accurate assessment of model performance. Computing a high number of 𝑘 can make 𝑘-fold cross-validation computationally costly'
+        answer["explain_kfold_vs_shuffle_split"] = 'The data is randomly shuffled in shuffle-split to create train and test sets. Shuffle split might be more volatile than k-fold, though. Model performance can be more accurately assessed via 𝑘-fold cross-validation, which averages over multiple cycles of training and testing on different subsets of the data. B-fold cross-validation may become computationally expensive when a large number of 𝑘 are computed.'
         return answer
 
     # ----------------------------------------------------------------------
