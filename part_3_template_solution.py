@@ -81,9 +81,9 @@ class Section3:
     ]:
         """ """
         # Enter code and return the `answer`` dictionary
-        print("\nPart 3-A:")
-        answer = {}
 
+        answer = {}
+       
         Xtrain_3a1, ytrain_3a1, Xtest_3a1, ytest_3a1 = nu.prepare_custom_data(10000, 2000)
 
         # Initialize the ShuffleSplit cross-validator
@@ -151,9 +151,9 @@ class Section3:
                                                                                                  (
                                                                                                  5, 0.9937999999999999)]
         answer[
-            "text_rate_accuracy_change"] = "The rate of accuracy for testing data, increased with increase in the value of k"
+            "text_rate_accuracy_change"] = "The accuracy rate of the testing data increased together with the value of k."
         answer[
-            "text_is_topk_useful_and_why"] = "Yes, topk is helpful since it assesses how well a classifier performs when evaluating all k predicted classes rather than just the most likely one."
+            "text_is_topk_useful_and_why"] = "Certainly, topk is helpful as it assesses how well a classifier performs while evaluating all k predicted classes rather than simply the most likely one."
 
         """
         # `answer` is a dictionary with the following keys:
@@ -198,7 +198,7 @@ class Section3:
         """"""
         # Enter your code and fill the `answer` dictionary
         answer = {}
-        print("\nPart 3-B:")
+        print("Part 3(B) - \n")
         X, y, Xtest, ytest = u.prepare_data()
         Xtrain, ytrain = nu.filter_imbalanced_7_9s(X, y)
         Xtest, ytest = nu.filter_imbalanced_7_9s(Xtest, ytest)
@@ -228,8 +228,6 @@ class Section3:
         answer["length_ytest"] = 1129
         answer["max_Xtrain"] = 1
         answer["max_Xtest"] = 1
-       
-       
 
         # Answer is a dictionary with the same keys as part 1.B
 
@@ -254,7 +252,8 @@ class Section3:
     ) -> dict[str, Any]:
         """"""
         # Part 3(c)
-        print("\nPart 3-C:")
+        print("Part 3(C) - \n")
+
         def stratified_kfold():
             return StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
@@ -301,7 +300,7 @@ class Section3:
         answer["clf"] = SVC(random_state=42)
         answer["is_precision_higher_than_recall"] = True
         answer[
-            "explain_is_precision_higher_than_recall"] = "Because the model performs better at accurately predicting positive instances out of all anticipated positives (precision) than it does at identifying all actual positives (recall), precision is greater than recall. This may occur in datasets that are unbalanced, such that false positive costs are more efficiently minimised than false negative costs."
+            "explain_is_precision_higher_than_recall"] = "Because the model performs better at accurately predicting positive occurrences out of all anticipated positives (precision) than it does at identifying all actual positives (recall), precision is greater than recall. This may occur in datasets that are unbalanced, meaning that false positive costs are more efficiently minimized than false negative costs."
         answer["confusion_matrix_train"] = confusion_matrix(ytrain, y_pred_svc_train)
         answer["confusion_matrix_train"] = confusion_matrix(ytest, y_pred_svc_test)
 
@@ -343,7 +342,7 @@ class Section3:
         """"""
         # Enter your code and fill the `answer` dictionary
         answer = {}
-        print("\nPart 3-D:")
+        print("Part 3(D) - \n")
 
         def stratified_kfold():
             return StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
@@ -394,9 +393,10 @@ class Section3:
         answer["confusion_matrix_train"] = confusion_matrix(ytrain, y_pred_svc_train1)
         answer["confusion_matrix_test"] = confusion_matrix(ytest, y_pred_svc_test1)
         answer[
-            "explain_purpose_of_class_weights"] = "Class weights are used to address class imbalance in classification problems"
+            "explain_purpose_of_class_weights"] = "In classification difficulties, class imbalance is addressed by using class weights."
         answer[
-            "explain_performance_difference"] = "The SVM classifier performs better when class weights are included, as evidenced by increased recall, F1 score, and overall accuracy. This is especially true when accurately detecting positive occurrences. However, using class weights results in a minor drop in precision. This trade-off implies that there might be a tiny rise in false positives even while class weights aid in more accurately identifying instances of minority classes."
+            "explain_performance_difference"] = "The SVM classifier performs better when class weights are included, as seen by increased recall, F1 score, and overall accuracy. This is especially true when accurately detecting positive occurrences. However, applying class weights results in a minor drop in accuracy. This trade-off implies that there could be a tiny rise in false positives even while class weights aid in more accurately detecting instances of minority classes."
+
         """
         Answer is a dictionary with the following keys: 
         - "scores" : a dictionary with the mean/std of the F1 score, precision, and recall
