@@ -63,30 +63,25 @@ class Section2:
     ]:
         answer = {}
         # Enter your code and fill the `answer`` dictionary
-        print("\nPart 2-A:")
-
+        print("2(A) - \n")
         Xtrain, ytrain, Xtest, ytest = u.prepare_data()
         Xtrain_test = nu.scale_data(Xtrain)
         Xtest_test = nu.scale_data(Xtest)
-
         # Checking that the labels are integers
         ytrain_test = nu.scale_data_1(ytrain)
         ytest_test = nu.scale_data_1(ytest)
-        print("The elements in Xtrain a floating point number and scaled between 0 to 1: " + str(Xtrain_test))
-        print("The elements in a floating point number and scaled between 0 to 1: " + str(Xtest_test))
-        print("The elements in ytrian an integer: " + str(ytrain_test))
-        print("The elements in ytest an integer: " + str(ytest_test))
-
+        print("2(A) - Are elements in Xtrain a floating point number and scaled between 0 to 1: " + str(Xtrain_test))
+        print("2(A) - Are elements in a floating point number and scaled between 0 to 1: " + str(Xtest_test))
+        print("2(A) - Are elements in ytrian an integer: " + str(ytrain_test))
+        print("2(A) - Are elements in ytest an integer: " + str(ytest_test))
         # Calculate lengths of datasets and labels
         length_Xtrain = Xtrain.shape[0]
         length_Xtest = Xtest.shape[0]
         length_ytrain = ytrain.shape[0]
         length_ytest = ytest.shape[0]
-
         # Calculate maximum values in datasets
         max_Xtrain = Xtrain.max()
         max_Xtest = Xtest.max()
-
         # Calculate the number of classes and class counts for the training and testing set
         unique_classes_train, class_count_train = np.unique(ytrain, return_counts=True)
         nb_classes_train = len(unique_classes_train)
@@ -115,7 +110,6 @@ class Section2:
         # - length_ytest: number of labels in the testing set
         # - max_Xtrain: maximum value in the training set
         # - max_Xtest: maximum value in the testing set
-
         answer["nb_classes_train"] = 10
         answer["nb_classes_test"] = 10
         answer["class_count_train"] = [5923, 6742, 5958, 6131, 5842, 5421, 5918, 6265, 5851, 5949]
@@ -164,9 +158,8 @@ class Section2:
         # Enter your code and fill the `answer`` dictionary
         answer = {}
 
-        print("\nPart 2-B:")
+        print("2(B) - \n")
         print("For ntrain = 1000, ntest = 200: \n")
-
         # For ntrain = 1000, ntest = 200 performing 1(C)
         Xtrain_2b1, ytrain_2b1, Xtest_2b1, ytest_2b1 = nu.prepare_custom_data(1000, 200)
 
@@ -179,7 +172,7 @@ class Section2:
         print(f"Number of elements in each class in testing: {class_count_test_2b1_list}")
 
         # Performing Part C
-        print("\nPart 2-B(1C):")
+        print("Results for part 2b1c: \n")
         scores2b1c = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b1, ytrain=ytrain_2b1,
                                                        clf=DecisionTreeClassifier(random_state=42),
                                                        cv=KFold(n_splits=5, shuffle=True, random_state=42))
@@ -187,7 +180,7 @@ class Section2:
         print(scores_2b1c)
 
         # Performing Part D
-        print("\nPart 2-B(1D):")
+        print("Results for part 2b1d: \n")
         scores2b1d = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b1, ytrain=ytrain_2b1,
                                                        clf=DecisionTreeClassifier(random_state=42),
                                                        cv=ShuffleSplit(n_splits=5, random_state=42))
@@ -195,7 +188,7 @@ class Section2:
         print(scores_2b1d)
 
         # Performing Part F with logistic regression of 300 iterations
-        print("\nPart 2-B(1F):")
+        print("Results for part 2b1f: \n")
         scores2b1f = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b1, ytrain=ytrain_2b1,
                                                        clf=LogisticRegression(max_iter=300, random_state=42),
                                                        cv=ShuffleSplit(n_splits=5, random_state=42))
@@ -215,7 +208,7 @@ class Section2:
         print(f"Number of elements in each class in testing: {class_count_test_2b2_list}")
 
         # Performing Part C
-        print("\nPart 2-B(2C):")
+        print("Results for part 2b2c: \n")
         scores2b2c = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b2, ytrain=ytrain_2b2,
                                                        clf=DecisionTreeClassifier(random_state=42),
                                                        cv=KFold(n_splits=5, shuffle=True, random_state=42))
@@ -223,7 +216,7 @@ class Section2:
         print(scores_2b2c)
 
         # Performing Part D
-        print("\nPart 2-B(2D):")
+        print("Results for part 2b2d: \n")
         scores2b2d = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b2, ytrain=ytrain_2b2,
                                                        clf=DecisionTreeClassifier(random_state=42),
                                                        cv=ShuffleSplit(n_splits=5, random_state=42))
@@ -231,7 +224,7 @@ class Section2:
         print(scores_2b2d)
 
         # Performing Part F with logistic regression of 300 iterations
-        print("\nPart 2-B(2F):")
+        print("Results for part 2b2f: \n")
         scores2b2f = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b2, ytrain=ytrain_2b2,
                                                        clf=LogisticRegression(max_iter=300, random_state=42),
                                                        cv=ShuffleSplit(n_splits=5, random_state=42))
@@ -251,7 +244,7 @@ class Section2:
         print(f"Number of elements in each class in testing: {class_count_test_2b3_list}")
 
         # Performing Part C
-        print("\nPart 2-B(3C):")
+        print("Results for part 2b3c: \n")
         scores2b3c = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b3, ytrain=ytrain_2b3,
                                                        clf=DecisionTreeClassifier(random_state=42),
                                                        cv=KFold(n_splits=5, shuffle=True, random_state=42))
@@ -259,7 +252,7 @@ class Section2:
         print(scores_2b3c)
 
         # Performing Part D
-        print("\nPart 2-B(3D):")
+        print("Results for part 2b3d: \n")
         scores2b3d = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b3, ytrain=ytrain_2b3,
                                                        clf=DecisionTreeClassifier(random_state=42),
                                                        cv=ShuffleSplit(n_splits=5, random_state=42))
@@ -267,7 +260,7 @@ class Section2:
         print(scores_2b3d)
 
         # Performing Part F with logistic regression of 300 iterations
-        print("\nPart 2-B(3F):")
+        print("Results for part 2b3f: \n")
         scores2b3f = u.train_simple_classifier_with_cv(Xtrain=Xtrain_2b3, ytrain=ytrain_2b3,
                                                        clf=LogisticRegression(max_iter=300, random_state=42),
                                                        cv=ShuffleSplit(n_splits=5, random_state=42))
